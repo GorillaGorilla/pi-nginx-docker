@@ -4,10 +4,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
 var path = require('path');
+const helmet = require('helmet');
 
 var spawn = require('child_process').spawn;
 var proc;
 
+app.use(helmet());
 app.use('/', express.static(path.join(__dirname, 'stream')));
 
 
@@ -39,7 +41,7 @@ io.on('connection', function(socket) {
 
 });
 
-http.listen(3000, function() {
+http.listen(3050, function() {
   console.log('listening on *:3000');
 });
 
